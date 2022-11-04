@@ -28,7 +28,7 @@ class LevelSelector extends Component {
       return (
         <button
           onClick={() => {
-            this.goToPlayScreen();
+            this.goToPlayScreen(rows, columns);
           }}
           className="levelButton"
           key={level.difficulty}
@@ -39,8 +39,8 @@ class LevelSelector extends Component {
     });
   };
 
-  goToPlayScreen = () => {
-    this.props.navigate('/PlayScreen');
+  goToPlayScreen = (rows, columns) => {
+    this.props.navigate('/PlayScreen/' + rows + '/' + columns);
   };
 
   render() {

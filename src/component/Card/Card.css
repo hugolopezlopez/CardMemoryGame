@@ -1,0 +1,21 @@
+.cardCntnr {
+  width: 15vw;
+  height: 15vw;
+  max-height: 18vh;
+  max-width: 18vh;
+  border-width: 2px;
+  border-color: var(--main-color);
+  padding: 5px 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.card {
+  max-height: 100%;
+  max-width: 100%;
+}

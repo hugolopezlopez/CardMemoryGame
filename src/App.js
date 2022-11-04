@@ -11,7 +11,7 @@ class App extends Component {
       <Router>
         <Routes>
           <Route path="/" element={<LevelSelector />} />
-          <Route path="/PlayScreen" element={<PlayScreen />} />
+          <Route path="/PlayScreen/:rows/:columns" element={<PlayScreen />} />
         </Routes>
       </Router>
     );
