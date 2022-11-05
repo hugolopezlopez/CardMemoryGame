@@ -30,7 +30,7 @@ class LevelSelector extends Component {
           onClick={() => {
             this.goToPlayScreen(rows, columns);
           }}
-          className="levelButton"
+          className="button"
           key={level.difficulty}
         >
           {rows + "X" + columns + " (" + level.difficulty + ")"}

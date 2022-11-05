@@ -58,6 +58,9 @@ class CardBoard extends Component {
         hiddenImages: currentHiddenImages,
         visibleImages: [],
       });
+      if (this.state.hiddenImages.length === (this.state.rows * this.state.columns)) {
+        this.props.onResolved();
+      }
     }, 1000);
   };
 

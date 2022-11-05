@@ -35,7 +35,8 @@
   align-items: center;
 }
 
-.levelButton {
+.button {
+  text-transform: uppercase;
   font-family: Comix Loud;
   color: var(--secondary-color);
   border-color: var(--main-color);

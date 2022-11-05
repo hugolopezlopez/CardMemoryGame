@@ -1,0 +1,26 @@
+.successCntnr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.successMsg {
+  text-align: center;
+  font-size: 30px;
+  line-height: 80px;
+  text-transform: uppercase;
+  font-family: Comix Loud;
+  color: var(--main-color);
+}
+
+.successImg {
+  max-width: 100%;
+}
+
+.successBtnCntnr {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
