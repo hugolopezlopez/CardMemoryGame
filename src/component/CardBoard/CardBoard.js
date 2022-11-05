@@ -3,6 +3,7 @@ import { Component } from "react";
 import { withRouter } from "../../helper/WithRouter";
 import utils from "../../helper/utils";
 import Card from "../Card/Card";
+import { showCardTime } from "../../config/config";
 import "./CardBoard.css";
 
 class CardBoard extends Component {
@@ -63,13 +64,13 @@ class CardBoard extends Component {
       if (this.state.hiddenImages.length === (this.state.rows * this.state.columns)) {
         this.props.onResolved();
       }
-    }, 1000);
+    }, showCardTime);
   };
 
   onPairNotFound = () => {
     setTimeout(() => {
       this.setState({ visibleImages: [], currentFlippedImage: 0 });
-    }, 1000);
+    }, showCardTime);
   };
 
   getBoard = () => {

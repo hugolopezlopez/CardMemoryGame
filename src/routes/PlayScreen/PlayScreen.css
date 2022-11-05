@@ -24,3 +24,31 @@
   justify-content: space-around;
   margin: 10px 10px;
 }
+
+.startBtnCntnr {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5) 
+}
+
+.startButton {
+  text-transform: uppercase;
+  font-family: Comix Loud;
+  color: var(--secondary-color);
+  border-color: var(--main-color);
+  background-color: white;
+  border-width: 2px;
+  display: block;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  line-height: 40px;
+  margin-top: 20px;
+}

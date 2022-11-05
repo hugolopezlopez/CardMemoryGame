@@ -3,8 +3,9 @@ export const levels = [
   {rows: 4, columns: 6, difficulty: "MEDIUM"},
   {rows: 5, columns: 6, difficulty: "DIFFICULT"}
 ];
-export const playTime = 6000;//miliSec
-export const images = [
+export const playTime = 60;//Sec
+export const showCardTime = 1000;//milliSec
+export const images = [//TODO: Get images from future server or get images names from image folder.
   "01",
   "02",
   "03",
@@ -20,4 +21,4 @@ export const images = [
   "13",
   "14",
   "15",
-];//TODO: Get images from future server or get images names from image folder.
+];
