@@ -7,5 +7,9 @@ export const strings = {
   success: {
     congrats: "Congratulations, you solved the Board!!!",
     restart: "Restart"
+  },
+  playScreen: {
+    pairsLeft: "Pairs left",
+    attempts: "Attempts"
   }
 };

@@ -43,6 +43,7 @@ class CardBoard extends Component {
   };
 
   checkCardPair = (id, index) => {
+    this.props.onAttempt();
     if (this.state.currentFlippedImage === id) {
       this.onPairFound(index);
     } else {
@@ -52,6 +53,7 @@ class CardBoard extends Component {
 
   onPairFound = (index) => {
     setTimeout(() => {
+      this.props.onPairFound();
       const currentHiddenImages = this.state.hiddenImages;
       currentHiddenImages.push(index, this.state.visibleImages[0]);
       this.setState({
