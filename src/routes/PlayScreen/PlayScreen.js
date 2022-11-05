@@ -2,8 +2,8 @@ import { Component } from "react";
 
 import { withRouter } from "../../helper/WithRouter";
 import companyLogo from "../../assets/images/nen_logo.png";
-import CardBoard from "../CardBoard/CardBoard";
-import Success from "../Success/Success";
+import CardBoard from "../../component/CardBoard/CardBoard";
+import Success from "../../component/Success/Success";
 import { strings } from "../../assets/strings";
 import "./PlayScreen.css";
 

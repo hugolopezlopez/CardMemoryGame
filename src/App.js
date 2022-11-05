@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import LevelSelector from "./component/LevelSelector/LevelSelector";
-import PlayScreen from "./component/PlayScreen/PlayScreen";
+import LevelSelector from "./routes/LevelSelector/LevelSelector";
+import PlayScreen from "./routes/PlayScreen/PlayScreen";
 
 class App extends Component {
   render() {
