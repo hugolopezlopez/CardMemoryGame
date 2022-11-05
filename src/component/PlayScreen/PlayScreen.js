@@ -13,8 +13,8 @@ class PlayScreen extends Component {
     this.state = {
       resolved: false,
       reset: false,
-      pairsLeft: props.match.params.rows * props.match.params.columns / 2,
-      attempts: 0
+      pairsLeft: (props.match.params.rows * props.match.params.columns) / 2,
+      attempts: 0,
     };
   }
 
@@ -24,26 +24,43 @@ class PlayScreen extends Component {
 
   onPairFound = () => {
     const pairsLeft = this.state.pairsLeft - 1;
-    this.setState({pairsLeft: pairsLeft});
+    this.setState({ pairsLeft: pairsLeft });
   };
 
   onAttempt = () => {
     const attempts = this.state.attempts + 1;
-    this.setState({attempts: attempts});
+    this.setState({ attempts: attempts });
+  };
+
+  goToLevelSelectionScreen = (rows, columns) => {
+    this.props.navigate('/');
   };
 
   render() {
     return (
       <div className="mainCntnr">
-        <img className="logo" src={companyLogo} alt="Logo" />
+        <div className="header">
+          <button onClick={this.goToLevelSelectionScreen} className="backButton">
+            {strings.playScreen.back}
+          </button>
+          <img className="logo" src={companyLogo} alt="Logo" />
+        </div>
         {!this.state.resolved ? (
-          <CardBoard onResolved={this.onResolved} onPairFound={this.onPairFound} onAttempt={this.onAttempt}></CardBoard>
+          <CardBoard
+            onResolved={this.onResolved}
+            onPairFound={this.onPairFound}
+            onAttempt={this.onAttempt}
+          ></CardBoard>
         ) : (
-          <Success></Success>
+          <Success goToLevelSelectionScreen={this.goToLevelSelectionScreen}></Success>
         )}
         <div className="footer">
-          <div className="subtitle">{this.state.pairsLeft} {strings.playScreen.pairsLeft}</div>
-          <div className="subtitle">{strings.playScreen.attempts} {this.state.attempts}</div>
+          <div className="subtitle">
+            {this.state.pairsLeft} {strings.playScreen.pairsLeft}
+          </div>
+          <div className="subtitle">
+            {strings.playScreen.attempts} {this.state.attempts}
+          </div>
         </div>
       </div>
     );

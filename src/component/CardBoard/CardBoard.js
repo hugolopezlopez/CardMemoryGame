@@ -52,8 +52,8 @@ class CardBoard extends Component {
   };
 
   onPairFound = (index) => {
+    this.props.onPairFound();
     setTimeout(() => {
-      this.props.onPairFound();
       const currentHiddenImages = this.state.hiddenImages;
       currentHiddenImages.push(index, this.state.visibleImages[0]);
       this.setState({

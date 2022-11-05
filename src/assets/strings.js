@@ -10,6 +10,7 @@ export const strings = {
   },
   playScreen: {
     pairsLeft: "Pairs left",
-    attempts: "Attempts"
+    attempts: "Attempts",
+    back: "< back"
   }
 };

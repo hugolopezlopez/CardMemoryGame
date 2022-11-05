@@ -1,6 +1,26 @@
-.footer {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0px 10px;
+}
+
+.backButton {
+  border: none;
+  text-transform: uppercase;
+  font-family: Comix Loud;
+  color: var(--secondary-color);
+  background-color: white;
+  display: block;
+}
+
+.logo {
+  max-width: 80px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   margin: 10px 10px;
 }

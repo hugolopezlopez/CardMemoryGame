@@ -11,10 +11,6 @@ class Success extends Component {
     super();
   }
 
-  goToLevelSelectionScreen = (rows, columns) => {
-    this.props.navigate('/');
-  };
-
   render() {
     return (
       <div className="successCntnr">
@@ -24,7 +20,7 @@ class Success extends Component {
         <img className="successImg" src={succcessImage} alt="success" />
         <div className="successBtnCntnr">
           <button
-            onClick={this.goToLevelSelectionScreen}
+            onClick={this.props.goToLevelSelectionScreen}
             className="button"
           >
             {strings.success.restart}
