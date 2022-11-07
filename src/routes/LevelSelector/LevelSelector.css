@@ -8,7 +8,6 @@
 
 .logo {
   margin-left: 30px;
-  margin-top: 30px;
 }
 
 .title {
@@ -76,5 +75,25 @@
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 800px) {
+  .title {
+    font-size: 20px !important;
+    line-height: 80px;
+  }
+  .subtitle {
+    font-size: 10px;
+  }
+  .button {
+    font-size: 10px;
+    width: 200px !important;
+    height: 40px;
+    line-height: 40px;
+  }
+  .footerText{
+    font-size: 10px;
+    animation: rightToLeft 30s linear infinite;
   }
 }

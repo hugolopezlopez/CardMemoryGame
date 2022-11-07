@@ -14,7 +14,6 @@ class PlayScreen extends Component {
       gameStarted: false,
       resolved: false,
       failure: false,
-      reset: false,
       pairsLeft: (props.match.params.rows * props.match.params.columns) / 2,
       attempts: 0,
       countDown: 60,
@@ -39,12 +38,16 @@ class PlayScreen extends Component {
     this.props.navigate("/");
   };
 
-  countDown = () => {
+  onStartGame = () => {
     if (!this.state.gameStarted) {
       this.setState({
         gameStarted: true,
       });
     }
+    this.countDown();
+  };
+
+  countDown = () => {
     if (this.state.countDown > 1) {
       setTimeout(() => {
         if (!this.state.resolved) {
@@ -62,7 +65,7 @@ class PlayScreen extends Component {
       <div className="mainCntnr">
         {!this.state.gameStarted && (
           <div className="startBtnCntnr">
-            <button onClick={this.countDown} className="startButton">
+            <button onClick={this.onStartGame} className="startButton">
               Start
             </button>
           </div>

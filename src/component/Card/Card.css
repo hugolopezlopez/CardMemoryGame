@@ -1,21 +1,43 @@
 .cardCntnr {
-  width: 15vw;
-  height: 15vw;
-  max-height: 18vh;
-  max-width: 18vh;
+  perspective: 1000px;
+  position: relative;
+}
+
+.card {
   border-width: 2px;
   border-color: var(--main-color);
-  padding: 5px 5px;
   margin-left: 5px;
   margin-top: 5px;
   border-radius: 5px;
   display: flex;
-  align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  transform-style: preserve-3d;
+  transition: all 0.5s linear;
 }
 
-.card {
+.front {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  backface-visibility: hidden;
+  align-items: center;
+  display: flex;
+  padding: 2px 2px;
+}
+
+.back {
+  display: flex;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.img {
   max-height: 100%;
   max-width: 100%;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
