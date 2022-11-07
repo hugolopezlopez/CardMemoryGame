@@ -1,26 +1,20 @@
-import { Component } from "react";
+import React from "react";
 
-import {withRouter} from '../../helper/WithRouter'
 import { levels } from "../../config/config";
 import { strings } from "../../assets/strings";
 import companyLogo from "../../assets/images/nen_logo.png";
 import "./LevelSelector.css";
 
-class LevelSelector extends Component {
-  constructor() {
-    super();
-    this.state = {
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight,
-    };
-  }
+function LevelSelector(props) {
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
 
-  getLevelButtons = () => {
+  const getLevelButtons = () => {
     return levels.map((level) => {
       let columns = level.columns;
       let rows = level.rows;
       if (level.rows !== level.columns) {
-        if (this.state.windowWidth < this.state.windowHeight) {
+        if (windowWidth < windowHeight) {
           columns = level.rows;
           rows = level.columns;
         }
@@ -28,7 +22,7 @@ class LevelSelector extends Component {
       return (
         <button
           onClick={() => {
-            this.goToPlayScreen(rows, columns);
+            goToPlayScreen(rows, columns);
           }}
           className="button"
           key={level.difficulty}
@@ -39,25 +33,23 @@ class LevelSelector extends Component {
     });
   };
 
-  goToPlayScreen = (rows, columns) => {
-    this.props.navigate('/PlayScreen/' + rows + '/' + columns);
+  const goToPlayScreen = (rows, columns) => {
+    props.handleNavigation("/PlayScreen", { state: { rows: rows, columns: columns } });
   };
 
-  render() {
-    return (
-      <div className="mainCntnr">
-        <div className="subCntnr">
-          <img className="logo" src={companyLogo} alt="Logo" />
-          <p className="title">{strings.levelSelector.title}</p>
-          <p className="subtitle">{strings.levelSelector.subTitle}</p>
-          <div className="buttonsCntnr">{this.getLevelButtons()}</div>
-        </div>
-        <div className="levelSelectorFooter">
-          <p className="footerText">{strings.levelSelector.instructions}</p>
-        </div>
+  return (
+    <div className="mainCntnr">
+      <div className="subCntnr">
+        <img className="logo" src={companyLogo} alt="Logo" />
+        <p className="title">{strings.levelSelector.title}</p>
+        <p className="subtitle">{strings.levelSelector.subTitle}</p>
+        <div className="buttonsCntnr">{getLevelButtons()}</div>
       </div>
-    );
-  }
+      <div className="levelSelectorFooter">
+        <p className="footerText">{strings.levelSelector.instructions}</p>
+      </div>
+    </div>
+  );
 }
 
-export default withRouter(LevelSelector);
+export default LevelSelector;

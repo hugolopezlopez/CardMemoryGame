@@ -1,21 +1,23 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
 import LevelSelector from "./routes/LevelSelector/LevelSelector";
 import PlayScreen from "./routes/PlayScreen/PlayScreen";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<LevelSelector />} />
-          <Route path="/PlayScreen/:rows/:columns" element={<PlayScreen />} />
-        </Routes>
-      </Router>
-    );
+function App() {
+  const navigate = useNavigate();
+
+  const handleNavigation = (route, params) => {
+    navigate(route, params);
   }
+
+  return (
+    <Routes>
+      <Route path="/" element={<LevelSelector handleNavigation={handleNavigation} />} />
+      <Route path="/PlayScreen" element={<PlayScreen handleNavigation={handleNavigation} />} />
+    </Routes>
+  );
 }
 
 export default App;

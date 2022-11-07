@@ -1,110 +1,109 @@
-import { Component } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-import { withRouter } from "../../helper/WithRouter";
 import companyLogo from "../../assets/images/nen_logo.png";
 import CardBoard from "../../component/CardBoard/CardBoard";
 import { strings } from "../../assets/strings";
 import Finish from "../../component/Finish/Finish";
 import "./PlayScreen.css";
 
-class PlayScreen extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      gameStarted: false,
-      resolved: false,
-      failure: false,
-      pairsLeft: (props.match.params.rows * props.match.params.columns) / 2,
-      attempts: 0,
-      countDown: 60,
-    };
-  }
+function PlayScreen(props) {
+  const location = useLocation();
 
-  onResolved = () => {
-    this.setState({ resolved: true });
-  };
+  const rows = location.state.rows || 4;
+  const columns = location.state.columns || 4;
+  const [gameStarted, setGameStarted] = useState(false);
+  const [resolved, setResolved] = useState(false);
+  const [failure, setFailure] = useState(false);
+  const [pairsLeft, setPairsLeft] = useState((rows * columns) / 2);
+  const [attempts, setAttempts] = useState(0);
+  const [count, setCount] = useState(60);
 
-  onPairFound = () => {
-    const pairsLeft = this.state.pairsLeft - 1;
-    this.setState({ pairsLeft: pairsLeft });
-  };
-
-  onAttempt = () => {
-    const attempts = this.state.attempts + 1;
-    this.setState({ attempts: attempts });
-  };
-
-  onReturnToLevelSelection = (rows, columns) => {
-    this.props.navigate("/");
-  };
-
-  onStartGame = () => {
-    if (!this.state.gameStarted) {
-      this.setState({
-        gameStarted: true,
-      });
+  useEffect(() => {
+    if (gameStarted) {
+      if (count > 0) {
+        setTimeout(() => {
+          if (!resolved) {
+            const newCount = count - 1;
+            setCount(newCount);
+          }
+        }, 1000);
+      } else {
+        setFailure(true);
+      }
     }
-    this.countDown();
+  }, [count, resolved, gameStarted]);
+
+  const onResolved = () => {
+    setResolved(true);
   };
 
-  countDown = () => {
-    if (this.state.countDown > 1) {
-      setTimeout(() => {
-        if (!this.state.resolved) {
-          this.setState({ countDown: this.state.countDown - 1 });
-          this.countDown();
-        }
-      }, 1000);
-    } else {
-      this.setState({ failure: true });
+  const onPairFound = () => {
+    setPairsLeft(pairsLeft - 1);
+  };
+
+  const onAttempt = () => {
+    setAttempts(attempts + 1);
+  };
+
+  const onReturnToLevelSelection = (rows, columns) => {
+    props.handleNavigation("/");
+  };
+
+  const onStartGame = () => {
+    if (!gameStarted) {
+      setGameStarted(true);
     }
   };
 
-  render() {
-    return (
-      <div className="mainCntnr">
-        {!this.state.gameStarted && (
-          <div className="startBtnCntnr">
-            <button onClick={this.onStartGame} className="startButton">
-              Start
-            </button>
-          </div>
-        )}
-        <div className="header">
-          <button
-            onClick={this.onReturnToLevelSelection}
-            className="backButton"
-          >
-            {strings.playScreen.back}
+  return (
+    <div className="mainCntnr">
+      {!gameStarted && (
+        <div className="startBtnCntnr">
+          <button onClick={() => onStartGame()} className="startButton">
+            Start
           </button>
-          <div className="subtitle">Seconds left {this.state.countDown}</div>
-          <img className="logo" src={companyLogo} alt="Logo" />
         </div>
-        {!this.state.resolved && !this.state.failure && (
-          <CardBoard
-            onResolved={this.onResolved}
-            onPairFound={this.onPairFound}
-            onAttempt={this.onAttempt}
-          ></CardBoard>
-        )}
-        {(this.state.resolved || this.state.failure) && (
-          <Finish
-            onReturnToLevelSelection={this.onReturnToLevelSelection}
-            resolved={this.state.resolved}
-            failure={this.state.failure}
-          ></Finish>
-        )}
-        <div className="footer">
-          <div className="subtitle">
-            {this.state.pairsLeft} {strings.playScreen.pairsLeft}
-          </div>
-          <div className="subtitle">
-            {strings.playScreen.attempts} {this.state.attempts}
-          </div>
+      )}
+      <div className="header">
+        <button
+          onClick={() => onReturnToLevelSelection()}
+          className="backButton"
+        >
+          {strings.playScreen.back}
+        </button>
+        <div className="subtitle">
+          {strings.playScreen.secondsLeft} {count}
+        </div>
+        <img className="logo" src={companyLogo} alt="Logo" />
+      </div>
+      {!resolved && !failure && (
+        <CardBoard
+          onResolved={() => onResolved()}
+          onPairFound={() => onPairFound()}
+          onAttempt={() => onAttempt()}
+          rows={rows}
+          columns={columns}
+        ></CardBoard>
+      )}
+      {(resolved || failure) && (
+        <Finish
+          onReturnToLevelSelection={() => onReturnToLevelSelection()}
+          resolved={resolved}
+          failure={failure}
+        ></Finish>
+      )}
+      <div className="footer">
+        <div className="subtitle">
+          {pairsLeft} {strings.playScreen.pairsLeft}
+        </div>
+        <div className="subtitle">
+          {strings.playScreen.attempts} {attempts}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default withRouter(PlayScreen);
+export default PlayScreen;

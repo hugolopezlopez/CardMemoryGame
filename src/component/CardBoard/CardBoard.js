@@ -1,94 +1,88 @@
-import { Component } from "react";
+import React, { useState } from "react";
 
-import { withRouter } from "../../helper/WithRouter";
 import utils from "../../helper/utils";
 import Card from "../Card/Card";
 import { showCardTime } from "../../config/config";
 import "./CardBoard.css";
 
-class CardBoard extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      rows: props.match.params.rows,
-      columns: props.match.params.columns,
-      images: utils.getImageArray(
-        props.match.params.rows,
-        props.match.params.columns
-      ),
-      visibleImages: [],
-      currentFlippedImage: undefined,
-      hiddenImages: [],
-    };
-  }
+function CardBoard(props) {
+  const rows = props.rows;
+  const columns = props.columns;
+  const [images] = useState(
+    utils.getImageArray(props.rows, props.columns)
+  );
+  const [visibleImages, setVisibleImages] = useState([]);
+  const [currentFlippedImage, setCurrentFlippedImage] = useState(undefined);
+  const [hiddenImages, setHiddenImages] = useState([]);
 
-  onClickCard = (id, index) => {
+  const onClickCard = (id, index) => {
     if (
-      this.state.visibleImages.indexOf(index) < 0 &&
-      this.state.hiddenImages.indexOf(index) < 0 &&
-      this.state.visibleImages.length < 2
+      visibleImages.indexOf(index) < 0 &&
+      hiddenImages.indexOf(index) < 0 &&
+      visibleImages.length < 2
     ) {
-      this.flipCard(id, index);
+      flipCard(id, index);
     }
   };
 
-  flipCard = (id, index) => {
-    if (this.state.visibleImages.length === 1) {
-      this.checkCardPair(id, index);
+  const flipCard = (id, index) => {
+    if (visibleImages.length === 1) {
+      checkCardPair(id, index);
     } else {
-      this.setState({ currentFlippedImage: id });
+      setCurrentFlippedImage(id);
     }
-    const currentFlippedImages = this.state.visibleImages;
+    const currentFlippedImages = visibleImages;
     currentFlippedImages.push(index);
-    this.setState({ visibleImages: currentFlippedImages });
+    setVisibleImages(currentFlippedImages);
   };
 
-  checkCardPair = (id, index) => {
-    this.props.onAttempt();
-    if (this.state.currentFlippedImage === id) {
-      this.onPairFound(index);
+  const checkCardPair = (id, index) => {
+    props.onAttempt();
+    if (currentFlippedImage === id) {
+      onPairFound(index);
     } else {
-      this.onPairNotFound();
+      onPairNotFound();
     }
   };
 
-  onPairFound = (index) => {
-    this.props.onPairFound();
+  const onPairFound = (index) => {
+    props.onPairFound();
     setTimeout(() => {
-      const currentHiddenImages = this.state.hiddenImages;
-      currentHiddenImages.push(index, this.state.visibleImages[0]);
-      this.setState({
-        hiddenImages: currentHiddenImages,
-        visibleImages: [],
-      });
-      if (this.state.hiddenImages.length === (this.state.rows * this.state.columns)) {
-        this.props.onResolved();
+      const currentHiddenImages = hiddenImages;
+      currentHiddenImages.push(index, visibleImages[0]);
+      setHiddenImages(currentHiddenImages);
+      setVisibleImages([]);
+      if (hiddenImages.length === rows * columns) {
+        props.onResolved();
       }
     }, showCardTime);
   };
 
-  onPairNotFound = () => {
+  const onPairNotFound = () => {
     setTimeout(() => {
-      this.setState({ visibleImages: [], currentFlippedImage: 0 });
+      setVisibleImages([]);
+      setCurrentFlippedImage(0);
     }, showCardTime);
   };
 
-  getBoard = () => {
+  const getBoard = () => {
     const board = [];
     let count = 0;
-    for (let i = 1; i <= this.state.rows; i++) {
+    for (let i = 1; i <= rows; i++) {
       const row = [];
-      for (let j = 1; j <= this.state.columns; j++) {
+      for (let j = 1; j <= columns; j++) {
         const index = count;
         row.push(
           <Card
             key={index}
-            id={this.state.images[index]}
+            id={images[index]}
             index={index}
-            onClickCard={this.onClickCard}
-            img={this.state.images[index]}
-            visible={this.state.visibleImages.indexOf(index) < 0}
-            hidden={this.state.hiddenImages.indexOf(index) < 0}
+            onClickCard={onClickCard}
+            img={images[index]}
+            visible={visibleImages.indexOf(index) < 0}
+            hidden={hiddenImages.indexOf(index) < 0}
+            rows={rows}
+            columns={columns}
           ></Card>
         );
         count++;
@@ -102,13 +96,11 @@ class CardBoard extends Component {
     return board;
   };
 
-  render() {
-    return (
-      <div className="boardCntnr">
-        <div>{this.getBoard()}</div>
-      </div>
-    );
-  }
+  return (
+    <div className="boardCntnr">
+      <div>{getBoard()}</div>
+    </div>
+  );
 }
 
-export default withRouter(CardBoard);
+export default CardBoard;
