@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { connect } from "react-redux";
 
 import companyLogo from "../../assets/images/nen_logo.png";
 import CardBoard from "../../component/CardBoard/CardBoard";
@@ -9,10 +9,8 @@ import Finish from "../../component/Finish/Finish";
 import "./PlayScreen.css";
 
 function PlayScreen(props) {
-  const location = useLocation();
-
-  const rows = location.state.rows || 4;
-  const columns = location.state.columns || 4;
+  const rows = props.rows;
+  const columns = props.columns;
   const [gameStarted, setGameStarted] = useState(false);
   const [resolved, setResolved] = useState(false);
   const [failure, setFailure] = useState(false);
@@ -106,4 +104,11 @@ function PlayScreen(props) {
   );
 }
 
-export default PlayScreen;
+const mapStateToProps = (state) => {
+  return {
+    rows: state.rows,
+    columns: state.columns,
+  };
+};
+
+export default connect(mapStateToProps)(PlayScreen);

@@ -1,6 +1,8 @@
 import React from "react";
 
 import { levels } from "../../config/config";
+import store from "../../store/store";
+import { setColumns, setRows } from "../../store/actions";
 import { strings } from "../../assets/strings";
 import companyLogo from "../../assets/images/nen_logo.png";
 import "./LevelSelector.css";
@@ -34,7 +36,13 @@ function LevelSelector(props) {
   };
 
   const goToPlayScreen = (rows, columns) => {
-    props.handleNavigation("/PlayScreen", { state: { rows: rows, columns: columns } });
+    setRowsAndColumns(rows, columns);
+    props.handleNavigation("/PlayScreen");
+  };
+
+  const setRowsAndColumns = (rows, columns) => {
+    store.dispatch(setColumns(columns));
+    store.dispatch(setRows(rows));
   };
 
   return (
