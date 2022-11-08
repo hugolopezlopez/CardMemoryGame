@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { flipCardTime } from "../../config/config";
+import cardService from "../../services/card.service";
 import companyLogo from "../../assets/images/nen_logo.png";
 import "./Card.css";
 
@@ -7,14 +9,6 @@ function Card(props) {
   const [imageName] = useState(props.img);
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
-
-  const getWidth = () => {
-    return (((windowWidth - 40) / props.columns) * 100) / windowWidth + "vw";
-  };
-
-  const getMaxHeight = () => {
-    return (((windowHeight - 150) / props.rows) * 100) / windowHeight + "vh";
-  };
 
   return (
     <div
@@ -29,10 +23,11 @@ function Card(props) {
         style={{
           borderStyle: props.hidden ? "solid" : "hidden",
           transform: !props.visible ? "rotateY(180deg)" : "",
-          width: getWidth(),
-          height: getWidth(),
-          maxWidth: getMaxHeight(),
-          maxHeight: getMaxHeight(),
+          transition: "all " + flipCardTime + "s linear",
+          width: cardService.getCardWidth(windowWidth, props.columns),
+          height: cardService.getCardWidth(windowWidth, props.columns),
+          maxWidth: cardService.getMaxCardHeight(windowHeight, props.rows),
+          maxHeight: cardService.getMaxCardHeight(windowHeight, props.rows),
         }}
       >
         <div className="front">

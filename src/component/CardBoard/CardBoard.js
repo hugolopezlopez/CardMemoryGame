@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import utils from "../../helper/utils";
+import cardService from "../../services/card.service";
 import Card from "../Card/Card";
 import { showCardTime } from "../../config/config";
 import "./CardBoard.css";
@@ -9,7 +9,7 @@ function CardBoard(props) {
   const rows = props.rows;
   const columns = props.columns;
   const [images] = useState(
-    utils.getImageArray(props.rows, props.columns)
+    cardService.getImageArray(props.rows, props.columns)
   );
   const [visibleImages, setVisibleImages] = useState([]);
   const [currentFlippedImage, setCurrentFlippedImage] = useState(undefined);

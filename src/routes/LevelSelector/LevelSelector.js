@@ -1,8 +1,7 @@
 import React from "react";
 
 import { levels } from "../../config/config";
-import store from "../../store/store";
-import { setColumns, setRows } from "../../store/actions";
+import cardService from "../../services/card.service";
 import { strings } from "../../assets/strings";
 import companyLogo from "../../assets/images/nen_logo.png";
 import "./LevelSelector.css";
@@ -13,14 +12,7 @@ function LevelSelector(props) {
 
   const getLevelButtons = () => {
     return levels.map((level) => {
-      let columns = level.columns;
-      let rows = level.rows;
-      if (level.rows !== level.columns) {
-        if (windowWidth < windowHeight) {
-          columns = level.rows;
-          rows = level.columns;
-        }
-      }
+      const {rows, columns} = cardService.getRowsAndColumns(level, windowWidth, windowHeight);
       return (
         <button
           onClick={() => {
@@ -29,20 +21,15 @@ function LevelSelector(props) {
           className="button"
           key={level.difficulty}
         >
-          {rows + "X" + columns + " (" + level.difficulty + ")"}
+          {strings.levelSelector.levelButton(rows, columns, level.difficulty)}
         </button>
       );
     });
   };
 
   const goToPlayScreen = (rows, columns) => {
-    setRowsAndColumns(rows, columns);
+    cardService.setRowsAndColumns(rows, columns);
     props.handleNavigation("/PlayScreen");
-  };
-
-  const setRowsAndColumns = (rows, columns) => {
-    store.dispatch(setColumns(columns));
-    store.dispatch(setRows(rows));
   };
 
   return (
