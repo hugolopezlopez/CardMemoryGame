@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing LevelSelector Component snapshot LevelSelector component 1`] = `
+<DocumentFragment>
+  <div
+    class="mainCntnr"
+  >
+    <div
+      class="subCntnr"
+    >
+      <img
+        alt="Logo"
+        class="logo"
+        src="nen_logo.png"
+      />
+      <p
+        class="title"
+      >
+        nen Memory
+      </p>
+      <p
+        class="subtitle"
+      >
+        Choose the difficulty level:
+      </p>
+      <div
+        class="buttonsCntnr"
+      >
+        <button
+          class="button"
+        >
+          4X4 (EASY)
+        </button>
+        <button
+          class="button"
+        >
+          4X6 (MEDIUM)
+        </button>
+        <button
+          class="button"
+        >
+          5X6 (DIFFICULT)
+        </button>
+      </div>
+    </div>
+    <div
+      class="levelSelectorFooter"
+    >
+      <p
+        class="footerText"
+      >
+        The game starts with all the cards face down. Try to find all the card couples, in less than a minute, turning over two by two cards each time. When a couple is found, the two cards will disappear. Good luck!
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
+`;
