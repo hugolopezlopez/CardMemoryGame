@@ -3,7 +3,7 @@ import React from "react";
 import { levels } from "../../config/config";
 import cardService from "../../services/card.service";
 import { strings } from "../../assets/strings";
-import companyLogo from "../../assets/images/nen_logo.png";
+import companyLogo from "../../assets/images/logo.png";
 import "./LevelSelector.css";
 
 function LevelSelector(props) {

@@ -11,12 +11,12 @@ exports[`Testing LevelSelector Component snapshot LevelSelector component 1`] = 
       <img
         alt="Logo"
         class="logo"
-        src="nen_logo.png"
+        src="logo.png"
       />
       <p
         class="title"
       >
-        nen Memory
+        Card Memory Game
       </p>
       <p
         class="subtitle"

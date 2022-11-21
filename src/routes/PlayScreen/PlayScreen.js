@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import companyLogo from "../../assets/images/nen_logo.png";
+import companyLogo from "../../assets/images/logo.png";
 import CardBoard from "../../component/CardBoard/CardBoard";
 import { strings } from "../../assets/strings";
 import Finish from "../../component/Finish/Finish";

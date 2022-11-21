@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { flipCardTime } from "../../config/config";
 import cardService from "../../services/card.service";
-import companyLogo from "../../assets/images/nen_logo.png";
+import companyLogo from "../../assets/images/logo.png";
 import "./Card.css";
 
 function Card(props) {

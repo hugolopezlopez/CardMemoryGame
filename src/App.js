@@ -6,7 +6,7 @@ import "./App.css";
 import LevelSelector from "./routes/LevelSelector/LevelSelector";
 import PlayScreen from "./routes/PlayScreen/PlayScreen";
 
-function App({ rows, columns, setRows, setColumns }) {
+function App() {
   const navigate = useNavigate();
 
   const handleNavigation = (route, params) => {
@@ -16,11 +16,13 @@ function App({ rows, columns, setRows, setColumns }) {
   return (
     <Routes>
       <Route
+        exact
         path="/"
         element={<LevelSelector handleNavigation={handleNavigation} />}
       />
       <Route
         path="/PlayScreen"
+        exact
         element={<PlayScreen handleNavigation={handleNavigation} />}
         store={store}
       />
