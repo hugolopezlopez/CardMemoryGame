@@ -27,4 +27,4 @@ The application will have a main game screen that contains the following element
 * Remaining pairs counter.
 * A button to return to the level selection screen.
 
----
+## Play the game <a target="_blank" href="https://fluffy-blancmange-28cb7b.netlify.app/">here!</a>
