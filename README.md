@@ -1,30 +1,23 @@
-# Memory Game
+# Card Memory Game
 
-Who hasn't played card games at some point? From a very young age to a beer night with friends, right?
+I developed this game for a tech test, and I took the chance to make a game for my child. I had a look at the level selector screen of the famous <a target="_blank" href="https://en.wikipedia.org/wiki/Lemmings_(video_game)">Lemmings</a> game to create a retro style and a simple interface.
 
-Well, for this Challenge you will have to choose your favourite theme and recreate
-the [famous game](https://en.wikipedia.org/wiki/Concentration_(card_game)).
+## Technology
 
-## How it works?
+The game is done in React and using **clean**, **maintainable** and **well-designed** code. Using tests to have a more stable and confident base code. Also using a linter and a prettifier.
 
-The dynamics of the game will consist of presenting a board with a series of face-down cards and revealing all the pairs
-before the time is up. The user will tap on each card to turn it over and, if two of them match when they are uncovered,
-they will be turned face up. If not, they will be hidden again.
+About the project architecture, the file structure is divided into routes, components, assets, config and redux folders. The tests are kept in each component folder, good practice to avoid forgetting its use.
 
-**The game is won if all pairs are uncovered within the time limit.**
+From the config file all the parameters of the game can be set.
 
-So, the game will have an initial screen to select one of the three difficulties and 1 minute to solve each board:
+To start the project, clone the repository, run ```npm install``` and ```npm start```.
 
-* Easy: 4x4 board
-* Medium: 4x6 board (or 6x4 depending on the screen)
-* Difficult: 5x6 board (or 6x5 depending on screen)
+## Changing the game settings
 
-The application will have a main game screen that contains the following elements:
+Use the config file to change the time the cards are displayed, the limit time to resolve the board, the flipping card time, or to add or remove difficulty levels.
 
-* Game board. The board where the user will play and see the cards.
-* Move counter. Every time 2 cards are turned over it will increase by 1, whether you hit or not.
-* Time counter. A 1-min countdown to reveal all pairs!
-* Remaining pairs counter.
-* A button to return to the level selection screen.
+The game has two colors, primary and secondary, also configurable from css custom properties.
+
+The images used are PNGs with transparent background and they are resized automatically, regardless of its size, so they can be replaced by any other.
 
 ## Play the game <a target="_blank" href="https://fluffy-blancmange-28cb7b.netlify.app/">here!</a>
