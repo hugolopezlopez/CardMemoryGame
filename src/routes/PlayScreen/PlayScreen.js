@@ -6,6 +6,7 @@ import companyLogo from "../../assets/images/logo.png";
 import CardBoard from "../../component/CardBoard/CardBoard";
 import { strings } from "../../assets/strings";
 import Finish from "../../component/Finish/Finish";
+import { playTime } from "../../config/config";
 import "./PlayScreen.css";
 
 function PlayScreen(props) {
@@ -16,7 +17,7 @@ function PlayScreen(props) {
   const [failure, setFailure] = useState(false);
   const [pairsLeft, setPairsLeft] = useState((rows * columns) / 2);
   const [attempts, setAttempts] = useState(0);
-  const [count, setCount] = useState(60);
+  const [count, setCount] = useState(playTime);
 
   useEffect(() => {
     if (gameStarted) {
@@ -90,16 +91,21 @@ function PlayScreen(props) {
           onReturnToLevelSelection={() => onReturnToLevelSelection()}
           resolved={resolved}
           failure={failure}
+          rows={rows}
+          columns={columns}
+          attempts={attempts}
+          pairsLeft={pairsLeft}
+          timeUsed={playTime - count}
         ></Finish>
       )}
-      <div className="footer">
+      {!resolved && !failure && <div className="footer">
         <div className="subtitle">
           {pairsLeft} {strings.playScreen.pairsLeft}
         </div>
         <div className="subtitle">
           {strings.playScreen.attempts} {attempts}
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

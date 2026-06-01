@@ -8,7 +8,17 @@ export const strings = {
   finish: {
     congrats: "Congratulations, you solved the Board!!!",
     restart: "Restart",
-    timeOut: "Sorry, time is over, let's try again"
+    timeOut: "Sorry, time is over, let's try again",
+    enterInitials: "Enter your initials",
+    initialsPlaceholder: "AAA",
+    saveScore: "Save score",
+    score: "Score",
+    scoresTitle: "Scores",
+    noScores: "No scores yet",
+    player: "Player",
+    mode: "Mode",
+    attempts: "Attempts",
+    time: "Time"
   },
   playScreen: {
     pairsLeft: "Pairs left",
