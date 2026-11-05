@@ -1,4 +1,20 @@
-const scores = [];
+const SCORES_STORAGE_KEY = "card-memory-game-scores";
+
+const loadScores = () => {
+  try {
+    if (typeof window === "undefined") {
+      return [];
+    }
+
+    const storedScores = window.localStorage.getItem(SCORES_STORAGE_KEY);
+    const parsedScores = storedScores ? JSON.parse(storedScores) : [];
+    return Array.isArray(parsedScores) ? parsedScores : [];
+  } catch (error) {
+    return [];
+  }
+};
+
+const scores = loadScores();
 let lastInitials = "";
 
 class ScoreService {
@@ -39,6 +55,7 @@ class ScoreService {
       }
       return a.attempts - b.attempts;
     });
+    this.persistScores();
 
     return newScore;
   };
@@ -49,6 +66,23 @@ class ScoreService {
 
   clearScores = () => {
     scores.splice(0, scores.length);
+    try {
+      if (typeof window !== "undefined") {
+        window.localStorage.removeItem(SCORES_STORAGE_KEY);
+      }
+    } catch (error) {
+      // Keep the in-memory score list usable when browser storage is unavailable.
+    }
+  };
+
+  persistScores = () => {
+    try {
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(SCORES_STORAGE_KEY, JSON.stringify(scores));
+      }
+    } catch (error) {
+      // Keep the game usable when browser storage is unavailable or full.
+    }
   };
 
   getLastInitials = () => {
