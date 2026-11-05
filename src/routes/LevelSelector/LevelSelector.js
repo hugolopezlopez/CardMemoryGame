@@ -28,7 +28,7 @@ function LevelSelector(props) {
   };
 
   const goToPlayScreen = (rows, columns) => {
-    cardService.setRowsAndColumns(rows, columns);
+    props.setRowsAndColumns(rows, columns);
     props.handleNavigation("/PlayScreen");
   };
 

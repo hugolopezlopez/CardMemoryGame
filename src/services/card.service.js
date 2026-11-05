@@ -1,6 +1,3 @@
-import store from "../store/store";
-import { setColumns, setRows } from "../store/actions";
-
 import { images } from "../config/config";
 
 class CardService {
@@ -10,11 +7,6 @@ class CardService {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
-  };
-
-  setRowsAndColumns = (rows, columns) => {
-    store.dispatch(setColumns(columns));
-    store.dispatch(setRows(rows));
   };
 
   getRowsAndColumns = (level, windowWidth, windowHeight) => {
