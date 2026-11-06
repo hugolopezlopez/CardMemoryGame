@@ -25,7 +25,7 @@ describe("Testing Finish Component", () => {
     );
 
     expect(screen.getByLabelText(strings.finish.enterInitials)).toBeInTheDocument();
-    expect(screen.getByText(`${strings.finish.score}: 9000`)).toBeInTheDocument();
+    expect(screen.getByText(`${strings.finish.score}: 7750`)).toBeInTheDocument();
   });
 
   it("should not ask for initials when the game is lost", () => {

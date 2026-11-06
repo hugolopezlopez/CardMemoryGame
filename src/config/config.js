@@ -4,6 +4,22 @@ export const levels = [
   {rows: 5, columns: 6, difficulty: "DIFFICULT"}
 ];
 export const playTime = 60;//Sec
+export const scoreSettings = {
+  completionPoints: {
+    "4X4": 5000,
+    "4X6": 7000,
+    "5X6": 9000,
+  },
+  accuracyBonus: 2500,
+  extraAttemptPenalty: 250,
+  speedBonusThresholds: {
+    "4X4": 7000,
+    "4X6": 9000,
+    "5X6": 11000,
+  },
+  speedBonusPerSecond: 5,
+  maxSpeedBonus: 300,
+};
 export const showCardTime = 500;//milliSec
 export const flipCardTime = "0.3";//Sec
 export const images = [//TODO: Get images from future server or get images names from image folder.

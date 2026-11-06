@@ -13,6 +13,10 @@ export const strings = {
     initialsPlaceholder: "AAA",
     saveScore: "Save score",
     score: "Score",
+    performanceScore: "Performance",
+    speedBonus: (bonus) => `Speed bonus: +${bonus}`,
+    speedBonusLocked: (threshold) =>
+      `Reach ${threshold} performance points to unlock the speed bonus.`,
     scoresTitle: "Scores",
     noScores: "No scores yet",
     player: "Player",

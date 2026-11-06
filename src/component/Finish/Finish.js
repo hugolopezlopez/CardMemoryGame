@@ -10,13 +10,14 @@ function Finish(props) {
   const [initials, setInitials] = useState(scoreService.getLastInitials());
   const [scores, setScores] = useState(scoreService.getScores());
   const [scoreSaved, setScoreSaved] = useState(false);
-  const score = scoreService.calculateScore({
+  const scoreBreakdown = scoreService.calculateScoreBreakdown({
     rows: props.rows,
     columns: props.columns,
     attempts: props.attempts,
     timeUsed: props.timeUsed,
     resolved: props.resolved,
   });
+  const score = scoreBreakdown.totalScore;
 
   const onInitialsChange = (event) => {
     const nextInitials = event.target.value
@@ -57,6 +58,16 @@ function Finish(props) {
         <form className="scoreForm" onSubmit={onSaveScore}>
           <div className="scoreSummary">
             <span>{strings.finish.score}: {score}</span>
+            <span>
+              {strings.finish.performanceScore}: {scoreBreakdown.performanceScore}
+            </span>
+            <span>
+              {scoreBreakdown.speedBonusUnlocked
+                ? strings.finish.speedBonus(scoreBreakdown.speedBonus)
+                : strings.finish.speedBonusLocked(
+                    scoreBreakdown.speedBonusThreshold
+                  )}
+            </span>
             <span>{strings.finish.time}: {props.timeUsed}s</span>
             <span>
               {props.pairsLeft} {strings.playScreen.pairsLeft}
