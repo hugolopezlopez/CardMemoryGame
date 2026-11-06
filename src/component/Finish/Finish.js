@@ -57,20 +57,22 @@ function Finish(props) {
       {props.resolved && (
         <form className="scoreForm" onSubmit={onSaveScore}>
           <div className="scoreSummary">
-            <span>{strings.finish.score}: {score}</span>
+            <div className="scorePreview">
+              <span>{strings.finish.scoreToSave}</span>
+              <strong>{score}</strong>
+            </div>
+            <span>{strings.finish.mode}: {props.rows}X{props.columns}</span>
+            <span>{strings.finish.attempts}: {props.attempts}</span>
+            <span>{strings.finish.time}: {props.timeUsed}s</span>
             <span>
               {strings.finish.performanceScore}: {scoreBreakdown.performanceScore}
             </span>
-            <span>
+            <span className="scoreSpeedInfo">
               {scoreBreakdown.speedBonusUnlocked
                 ? strings.finish.speedBonus(scoreBreakdown.speedBonus)
                 : strings.finish.speedBonusLocked(
                     scoreBreakdown.speedBonusThreshold
                   )}
-            </span>
-            <span>{strings.finish.time}: {props.timeUsed}s</span>
-            <span>
-              {props.pairsLeft} {strings.playScreen.pairsLeft}
             </span>
           </div>
           <label className="scoreLabel" htmlFor="initials">

@@ -38,16 +38,36 @@
 }
 
 .scoreSummary {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 18px;
+  gap: 8px 14px;
   width: 100%;
   color: var(--main-color);
-  font-size: 17px;
+  font-size: 14px;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+.scoreSummary > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.scorePreview {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 10px;
+}
+
+.scorePreview strong {
+  font-size: 28px;
+}
+
+.scoreSpeedInfo {
+  grid-column: 1 / -1;
 }
 
 .scoreLabel {
@@ -151,8 +171,12 @@
   }
 
   .scoreSummary {
-    font-size: 10px;
-    gap: 8px;
+    font-size: 12px;
+    gap: 6px 10px;
+  }
+
+  .scorePreview strong {
+    font-size: 24px;
   }
 
   .scoreInputCntnr {
