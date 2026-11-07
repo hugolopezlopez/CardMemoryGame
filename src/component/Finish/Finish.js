@@ -75,6 +75,7 @@ function Finish(props) {
               onChange={onInitialsChange}
               placeholder={strings.finish.initialsPlaceholder}
               maxLength="3"
+              spellCheck={false}
               disabled={scoreSaved}
             />
             <button

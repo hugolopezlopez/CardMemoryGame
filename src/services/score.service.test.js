@@ -94,6 +94,30 @@ describe("Testing ScoreService", () => {
     expect(twentyAttempts).toBe(2700);
   });
 
+  it("should award positive points whenever a board is resolved", () => {
+    const score = scoreService.calculateScore({
+      rows: 4,
+      columns: 4,
+      attempts: 27,
+      timeUsed: 45,
+      resolved: true,
+    });
+
+    expect(score).toBe(1000);
+  });
+
+  it("should keep unresolved games at zero points", () => {
+    const score = scoreService.calculateScore({
+      rows: 4,
+      columns: 4,
+      attempts: 27,
+      timeUsed: 60,
+      resolved: false,
+    });
+
+    expect(score).toBe(0);
+  });
+
   it("should keep saved scores sorted by score", () => {
     scoreService.addScore({
       initials: "abc",

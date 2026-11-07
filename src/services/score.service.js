@@ -1,10 +1,10 @@
 import { playTime, scoreSettings } from "../config/config";
 
 const SCORES_STORAGE_KEY = "card-memory-game-scores";
-const SCORE_VERSION = 3;
+const SCORE_VERSION = 4;
 
 const getScoreBreakdown = ({ rows, columns, attempts, timeUsed, resolved }) => {
-  if (!resolved || attempts <= 0) {
+  if (!resolved) {
     return {
       performanceScore: 0,
       speedBonus: 0,
@@ -17,14 +17,27 @@ const getScoreBreakdown = ({ rows, columns, attempts, timeUsed, resolved }) => {
   const mode =
     rows <= columns ? `${rows}X${columns}` : `${columns}X${rows}`;
   const minimumAttempts = (rows * columns) / 2;
-  const extraAttempts = Math.max(0, attempts - minimumAttempts);
   const completionPoints = scoreSettings.completionPoints[mode] || 5000;
   const speedBonusThreshold =
     scoreSettings.speedBonusThresholds[mode] || completionPoints + 2000;
+  if (attempts <= 0) {
+    return {
+      performanceScore: scoreSettings.minimumCompletionScore,
+      speedBonus: 0,
+      speedBonusThreshold,
+      speedBonusUnlocked: false,
+      totalScore: scoreSettings.minimumCompletionScore,
+    };
+  }
+
+  const extraAttempts = Math.max(0, attempts - minimumAttempts);
   const accuracyBonus =
     scoreSettings.accuracyBonus -
     extraAttempts * scoreSettings.extraAttemptPenalty;
-  const performanceScore = Math.max(0, completionPoints + accuracyBonus);
+  const performanceScore = Math.max(
+    scoreSettings.minimumCompletionScore,
+    completionPoints + accuracyBonus
+  );
   const speedBonusUnlocked = performanceScore >= speedBonusThreshold;
   const timeSaved = Math.max(0, playTime - timeUsed);
   const speedBonus = speedBonusUnlocked

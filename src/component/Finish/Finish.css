@@ -84,14 +84,15 @@
 .scoreInput {
   box-sizing: border-box;
   width: 104px;
-  height: 52px;
+  height: 56px;
   border: 2px solid var(--main-color);
   border-radius: 5px;
   padding: 0 8px;
   text-align: center;
-  font-family: Comix Loud;
-  font-size: 18px;
-  line-height: 1.8;
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--secondary-color);
   text-transform: uppercase;
 }
