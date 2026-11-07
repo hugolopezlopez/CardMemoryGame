@@ -16,7 +16,7 @@ To start the project, clone the repository, run ```npm install``` and ```npm sta
 
 Use the config file to change the time the cards are displayed, the limit time to resolve the board, the flipping card time, or to add or remove difficulty levels.
 
-Score values and thresholds are also configurable there. Completing a level awards points based on its difficulty. Extra attempts reduce the accuracy bonus, and reaching the level's performance threshold unlocks a small bonus for each second saved, up to the configured limit.
+Score values and thresholds are also configurable there. Completing a level awards points based on its difficulty, and extra attempts reduce the performance score. Each second saved adds time points; reaching the level's performance threshold unlocks an additional speed bonus. Both time rewards have configurable limits.
 
 The game has two colors, primary and secondary, also configurable from css custom properties.
 

@@ -11,8 +11,10 @@ export const scoreSettings = {
     "5X6": 11000,
   },
   accuracyBonus: 2500,
-  extraAttemptPenalty: 400,
+  extraAttemptPenalty: 300,
   minimumCompletionScore: 1000,
+  timePointsPerSecond: 10,
+  maxTimePoints: 600,
   speedBonusThresholds: {
     "4X4": 7000,
     "4X6": 10000,

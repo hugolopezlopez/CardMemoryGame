@@ -15,7 +15,7 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(score).toBe(7800);
+    expect(score).toBe(8400);
   });
 
   it("should unlock the speed bonus after reaching the performance threshold", () => {
@@ -27,7 +27,7 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(score).toBe(7300);
+    expect(score).toBe(7800);
   });
 
   it("should withhold the speed bonus below the performance threshold", () => {
@@ -39,7 +39,7 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(score).toBe(6700);
+    expect(score).toBe(7400);
   });
 
   it("should give the difficult mode a higher score base", () => {
@@ -51,7 +51,7 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(score).toBe(12700);
+    expect(score).toBe(12900);
   });
 
   it("should use the medium score settings in portrait orientation", () => {
@@ -70,7 +70,7 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(portraitScore).toBe(10100);
+    expect(portraitScore).toBe(10200);
     expect(landscapeScore).toBe(portraitScore);
   });
 
@@ -90,8 +90,29 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(seventeenAttempts).toBe(3900);
-    expect(twentyAttempts).toBe(2700);
+    expect(seventeenAttempts).toBe(5130);
+    expect(twentyAttempts).toBe(4170);
+  });
+
+  it("should award different scores for different completion times", () => {
+    const fasterScore = scoreService.calculateScore({
+      rows: 4,
+      columns: 4,
+      attempts: 20,
+      timeUsed: 33,
+      resolved: true,
+    });
+    const slowerScore = scoreService.calculateScore({
+      rows: 4,
+      columns: 4,
+      attempts: 20,
+      timeUsed: 35,
+      resolved: true,
+    });
+
+    expect(fasterScore).toBe(4170);
+    expect(slowerScore).toBe(4150);
+    expect(fasterScore).toBeGreaterThan(slowerScore);
   });
 
   it("should award positive points whenever a board is resolved", () => {
@@ -103,7 +124,7 @@ describe("Testing ScoreService", () => {
       resolved: true,
     });
 
-    expect(score).toBe(1000);
+    expect(score).toBe(1950);
   });
 
   it("should keep unresolved games at zero points", () => {

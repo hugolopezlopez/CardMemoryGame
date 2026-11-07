@@ -26,7 +26,7 @@ describe("Testing Finish Component", () => {
 
     expect(screen.getByLabelText(strings.finish.enterInitials)).toBeInTheDocument();
     expect(screen.getByText(strings.finish.scoreToSave)).toBeInTheDocument();
-    expect(screen.getByText("7750")).toBeInTheDocument();
+    expect(screen.getByText("8250")).toBeInTheDocument();
     expect(screen.getByText(`${strings.finish.mode}: 4X4`)).toBeInTheDocument();
     expect(screen.getByText(`${strings.finish.attempts}: 8`)).toBeInTheDocument();
     expect(screen.getByText(`${strings.finish.time}: 10s`)).toBeInTheDocument();
@@ -70,7 +70,7 @@ describe("Testing Finish Component", () => {
 
     expect(screen.getByText("ABC")).toBeInTheDocument();
     expect(screen.getByText("4X4")).toBeInTheDocument();
-    expect(screen.getByRole("cell", { name: "7750" })).toBeInTheDocument();
+    expect(screen.getByRole("cell", { name: "8250" })).toBeInTheDocument();
   });
 
   it("should prefill the last initials", () => {
