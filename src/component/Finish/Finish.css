@@ -83,6 +83,8 @@
 
 .scoreInput {
   box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
   width: 104px;
   height: 56px;
   border: 2px solid var(--main-color);
@@ -92,7 +94,7 @@
   font-family: Arial, sans-serif;
   font-size: 22px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 48px;
   color: var(--secondary-color);
   text-transform: uppercase;
 }
