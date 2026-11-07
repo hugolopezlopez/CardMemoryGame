@@ -30,6 +30,7 @@ describe("Testing Finish Component", () => {
     expect(screen.getByText(`${strings.finish.mode}: 4X4`)).toBeInTheDocument();
     expect(screen.getByText(`${strings.finish.attempts}: 8`)).toBeInTheDocument();
     expect(screen.getByText(`${strings.finish.time}: 10s`)).toBeInTheDocument();
+    expect(screen.queryByText(/performance|unlock/i)).not.toBeInTheDocument();
   });
 
   it("should not ask for initials when the game is lost", () => {

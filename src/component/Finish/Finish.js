@@ -10,14 +10,13 @@ function Finish(props) {
   const [initials, setInitials] = useState(scoreService.getLastInitials());
   const [scores, setScores] = useState(scoreService.getScores());
   const [scoreSaved, setScoreSaved] = useState(false);
-  const scoreBreakdown = scoreService.calculateScoreBreakdown({
+  const score = scoreService.calculateScore({
     rows: props.rows,
     columns: props.columns,
     attempts: props.attempts,
     timeUsed: props.timeUsed,
     resolved: props.resolved,
   });
-  const score = scoreBreakdown.totalScore;
 
   const onInitialsChange = (event) => {
     const nextInitials = event.target.value
@@ -64,16 +63,6 @@ function Finish(props) {
             <span>{strings.finish.mode}: {props.rows}X{props.columns}</span>
             <span>{strings.finish.attempts}: {props.attempts}</span>
             <span>{strings.finish.time}: {props.timeUsed}s</span>
-            <span>
-              {strings.finish.performanceScore}: {scoreBreakdown.performanceScore}
-            </span>
-            <span className="scoreSpeedInfo">
-              {scoreBreakdown.speedBonusUnlocked
-                ? strings.finish.speedBonus(scoreBreakdown.speedBonus)
-                : strings.finish.speedBonusLocked(
-                    scoreBreakdown.speedBonusThreshold
-                  )}
-            </span>
           </div>
           <label className="scoreLabel" htmlFor="initials">
             {strings.finish.enterInitials}
